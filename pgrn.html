@@ -1,0 +1,117 @@
+<html>
+	<head>
+		<title>Pro Git - Reading Notes</title>
+		<meta content="text/html" charset="utf-8">
+		<style type="text/css">
+			article{				
+				font-size: 12px;
+			}
+			article p {
+				text-indent: 2em;
+				padding: 0 0 0 0;
+				margin: 0 0 0 0;
+				line-height: 1.5;
+			}
+			ul,span{
+				margin-left: 2em;
+			}
+			mark {
+				border: solid 1px #E0E0E0;
+				padding: 1 3 1 3;
+				color: #B03060;
+				font-size: 12px;
+				background-color: #ffffff;
+			}
+			h5:before {
+				content: "♦ ";
+				margin-left: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<article>
+			<h5>现在开始 Pro Git 读书之旅: <a href="http://www.git-scm.com/" target="_blank">www.git-scm.com</a></h5>
+			<p>使用Git最简单的流程是这样的：</p><p>&nbsp;&nbsp;&nbsp;安装 > 配置 > 创建仓库(Init / clone) > 添加文件(add) > 提交文件(commit) > 抓取别人的更新(fetch / pull) > 合并到自己的更新(merge) > 推送自己的更新(push) </p>
+			<section>
+				<h5>安装</h5>
+				<p>
+					如果你是第一次使用git，或者你的PC设备上从没有使用过git，那么请抓住它并安装它.
+				</p>
+				<p>
+					从 <a href="http://www.git-scm.com/downloads" target="_blank">http://www.git-scm.com/downloads</a> 可以下载到你所需要的安装包，其中提供 Mac OS X/Windows/Linux/Solaris平台 .选择你需要的下载.
+				</p>
+				<p>
+					<a href="http://www.git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">http://www.git-scm.com/book/en/v2/Getting-Started-Installing-Git</a> 告诉我们如何去安装git.
+				</p>
+			</section>
+			<section>
+				<h5>配置 - <mark>$ git config</mark></h5>
+				<p>
+					Git 安装完成之后，我们就可以运行 Git Bash 开始使用Git了，不过再此之前，为了让Git更友好的配合我们的工作，对Git进行一些简单的配置是很有必要的。
+				</p>
+				<p>
+					用<mark>$ git config</mark>命令对 Git 进行配置。在执行<mark>$ git config</mark>
+					命令的时候，实际上是修改了git config文件的内容，所以我们也可以直接编辑git config文件达到同样的目的。
+					<p>git config文件存放在三个地方：</p>
+					<ul>
+						<li>/etc/gitconfig 文件: 系统级别的配置，对所有用户都适用，用<mark>$ git config --system</mark>命令编辑。</li>
+						<li>~/.gitconfig 文件: 用户级别配置，存在于每个用户的主目录内，对当前用户适用，用<mark>$ git config --global</mark>命令编辑。</li>
+						<li>工作目录中.git/config文件: 项目级的配置，仅针对当前项目适用，用<mark>$ git config --local</mark>命令编辑,其中<mark>--local</mark>是可以不写的哦。</li>
+					</ul>
+					<p>每一个级别的配置会覆盖上层的相同配置，所以.git/config 优于 ~/.gitconfig 优于 /etc/gitconfig 应用。</p>
+				</p>
+				<p>我们已经知道了<mark>$ git config</mark>命令，那么下面就试试它的作用好了。</p>
+				<p>按照惯例，多人协作时首先要让别人知道我们，那么用户名称和邮件地址是一个很重要的信息，这也是我们开始Git最开始要设置的信息。</p>
+				<ul>
+					<li><mark>$ git config --global user.name "User Name"</mark> 用户名设置成了"User Name"，可以替换成你自己的name哦。</li>
+					<li><mark>$ git config --global user.email useremail@example.com</mark> 邮箱设置成了"useremail@example.com"，可以替换成你自己的email哦。</li>
+				</ul>
+				<p>上面用了<mark>$ git config --global</mark>命令修改的是用户级别的配置，所以当前用户的所有项目都可以使用相同的name和email了。</p>
+				<p>到此为止，我们几乎就算是完成了Git的最基本的配置，也就是name和email，当然，git 还可以配置其他信息，例如文本编辑器<mark>$ git config --global core.editor </mark>，差异分析工具<mark>$ git config --global merge.tool </mark>等，其配置方法是一样的。</p>
+				<p>现在让我们用<mark>$ git config -l</mark>命令查看一下我们用例那些配置。</p>
+			    <p>还可以使用<mark>$ git help config</mark>或<mark>$ git config --help</mark>命令查看更详细的帮助。</p>			    
+				</section>
+					<section>
+				<h5>创建仓库 Init Repository - <mark>$ git init</mark> <mark>$ git clone [url]</mark> <mark>$ ssh-keygen -t rsa </mark></h5>
+				<p>现在，我们已经安装了Git，并已经配置了我们的Name和Email，接下来我们要创建一个仓库(Repository)。</p>
+				<p>有两种方法可以创建一个Git Repository。</p>
+				<p>方法1：使用<mark>$ git init</mark>命令，将本地目录初始化成git 仓库。</p>
+				<span><img src="images/gitinit.png"/><span>
+				<ul>
+					<li>第一条命令：在D:\GitHub目录下创建了GitInit文件夹，也可以自己手工创建。</li>
+					<li>第二条命令：跳转到GitInit目录.</li>
+					<li>第三条命令：将GitInit目录初始化成一个Git仓库.</li>
+				</ul>
+				<p>仓库创建完成，第一个方法就是这么简单，其作用是将自己本地的文件夹初始化成Git仓库，此时的Git仓库已经可以管理项目文件啦，只不过暂时只能自己玩,后面我们会讲怎样把自己的仓库分享给别人玩。</p>
+				<br/><br/>
+				<p>方法2：使用<mark>$ git clone [url]</mark>命令，将现有的仓库克隆到本地。</p>
+				<p>再使用<mark>$ git clone [url]</mark>命令克隆一个现有的仓库（一般是指远程仓库）之前，我们应该知道，大多数Git服务器使用SSH公钥来授权，为了得到授权，所以我们需要一个公钥(public key).</p>
+				<p>检查一下在你的PC上是否已经有了公钥,一般存放在账户主目录下的.ssh资料夹里，看一下有没有.pub文件，就像 id_rsa.pub这样.</p>
+				<ul>
+					<li><mark>$ cd ~/.ssh</mark> 进入账户主目录下的.ssh文件夹。</li>
+					<li><mark>$ ls</mark> 显示资料夹里所有的文件。</li>
+				</ul>
+				<p>如果没有.ssh资料夹，或者资料夹里没有.pub文件，那么你需要使用ssh-keygen创建一个公钥。</p>
+				<ul>
+					<li><mark>$ ssh-keygen -t rsa </mark> 在.ssh资料夹里创建一个id_rsa.pub和一个id_rsa文件，id_rsa.pub里面放的就是你的public key啦，id_rsa文件放的是你的私钥。<mark>-t rsa</mark> 指定了要创建的密钥类型是RSA(SSH-2)，其他的还可以是rsa1(SSH-1)或者dsa(SSH-2).</li>
+					<li><mark>$ cat id_rsa.pub </mark> 查看一下public key的内容。</li>
+				</ul>
+				<p>以上，我们就有了自己的 SSH 公钥，把公钥的内容复制给Git 管理员，或者我们自己将public key放到Git Server里，举例说明：</p>
+  				<ul>
+					<li>登录你的<a href="https://github.com/">github.com</a>，假设你已经注册了GitHub账户.</li>
+					<li>点击页面右上角的Settings按纽，进入<a href="https://github.com/settings/profile">https://github.com/settings/profile</a>。</li>
+					<li>点击页面左侧的SSH keys菜单，进入<a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a>。</li>
+					<li>点击页面右侧的Add SSH key按纽，将你的 public key 粘帖进 key 文本框，点击下面的Add ley按纽。完成:)</li>
+				</ul>
+				<p>这样，我们就已经取得了 Git 服务器(GitHub)远程仓库的授权。下面我们就可以运行<mark>$ git clone [url]</mark>命令克隆远程仓库了。</p>
+				<span><img src="images/gitclone.png"/><span>
+				<ul>
+					<li>上面把"git@github.com:dicolancy/PGRN.git"仓库克隆到了本地。</li>
+					<li>你会发现在D:\GitHub目录下多了一个叫做PGRN的文件夹，PGRN文件夹里就是你clone到的仓库。</li>
+					<li>如果你不喜欢PGRN这个名字，只需要在命令后面加上你希望的文件夹名就可以了,就像这样<mark>$ git clone git@github.com:dicolancy/PGRN.git myFolderName</mark>。</li>					
+				</ul>
+				<p>这样，我们就有了自己工作的仓库啦，简单吧:)</p>
+			</section>
+		</article>
+	</body>
+</html>
