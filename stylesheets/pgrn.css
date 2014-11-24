@@ -1,0 +1,45 @@
+article {
+	font-size: 14px;
+	width: 78%;
+}
+article p {
+	text-indent: 2em;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	line-height: 1.5;
+}
+section ul, span {
+	margin-left: 2em;
+}
+mark {
+	border: solid 1px #E0E0E0;
+	padding: 1 3 1 3;
+	color: #B03060;
+	font-size: 14px;
+	background-color: #ffffff;
+}
+h5:before {
+	content: "$ ";
+	margin-left: 5px;
+}
+.ulNav {
+	position: fixed;
+	top: 25%;
+	left: 80%;
+	box-shadow: 1px 1px 2px #888888;
+	padding: 5 5 5 5;
+	margin: 5 5 5 5;
+	line-height: 1.5;
+	font-size: 14px;
+	word-spacing: nowrap;
+}
+.ulNav li a{
+	text-decoration:none;
+}
+.ulNav li a:hover,mark:hover{
+	background-color:#ADD8E6;
+}
+
+.ulNavCommand{				
+	top: 50%;
+}
