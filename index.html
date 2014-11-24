@@ -1,79 +1,1020 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="pgrn : Reading notes for Pro Git">
+	<head>
+		<meta content="text/html" charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<meta name="description" content="pgrn : Reading notes for Pro Git">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/pgrn.css">
 
-    <title>pgrn</title>
-  </head>
+		<title>pgrn</title>
+	</head>
 
-  <body>
+	<body>
+		<!-- HEADER -->
+		<div id="header_wrap" class="outer">
+			<header class="inner">
+				<a id="forkme_banner" href="https://github.com/dicolancy/PGRN">View on GitHub</a>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/dicolancy/PGRN">View on GitHub</a>
+				<h1 id="project_title">pgrn</h1>
+				<h2 id="project_tagline">Reading notes for 《Pro Git》</h2>
 
-          <h1 id="project_title">pgrn</h1>
-          <h2 id="project_tagline">Reading notes for Pro Git</h2>
+				<section id="downloads">
+					<a class="zip_download_link" href="https://github.com/dicolancy/PGRN/zipball/master">Download this project as a .zip file</a>
+					<a class="tar_download_link" href="https://github.com/dicolancy/PGRN/tarball/master">Download this project as a tar.gz file</a>
+				</section>
+			</header>
+		</div>
+		<!-- MAIN CONTENT -->
+		<div id="main_content_wrap" class="outer">
+			<section id="main_content" class="inner">
+				<article>
+					<h5>现在开始 Pro Git 读书笔记: <a href="http://www.git-scm.com/" target="_blank">www.git-scm.com</a></h5>
+					<p>
+						从最最基础的使用开始，一步步探究Git的秘密。
+					</p>
+					<p>
+						<ul class="ulNav">
+							<li>
+								<a href="#1">安装</a>
+							</li>
+							<li>
+								<a href="#2">配置(config)</a>
+							</li>
+							<li>
+								<a href="#3">创建仓库(Init / clone)</a>
+							</li>
+							<li>
+								<a href="#4">添加文件(add)</a>
+							</li>
+							<li>
+								<a href="#5">提交文件(commit)</a>
+							</li>
+							<li>
+								<a href="#6">抓取别人的更新(fetch / pull)</a>
+							</li>
+							<li>
+								<a href="#7">推送自己的更新(push)</a>
+							</li>
+							<li>
+								<a href="#8">分支(branch)</a>
+							</li>
+							<li>
+								<a href="#9">移除文件(remove)</a>
+							</li>
+							<li>
+								<a href="#10">移动/重命名文件(move)</a>
+							</li>
+						</ul>
+						<ul class="ulNav ulNavCommand">
+							<li>
+								<a href="#gitconfig">
+								<mark>
+									$ git config
+								</mark></a>
+							</li>
+							<li>
+								<a href="#gitinit">
+								<mark>
+									$ git init
+								</mark></a>
+							</li>
+							<li>
+								<a href="#gitclone">
+								<mark>
+									$ git clone
+								</mark></a>
+							</li>
+						</ul>
+					</p>
+					<section>
+						<h5 id="1">安装</h5>
+						<p>
+							如果你是第一次使用git，或者你的PC设备上从没有使用过git，那么你需要安装它.
+						</p>
+						<p>
+							从 <a href="http://www.git-scm.com/downloads" target="_blank">http://www.git-scm.com/downloads</a> 可以下载到你所需要的安装包，其中提供 Mac OS X/Windows/Linux/Solaris平台 .选择你需要的下载.
+						</p>
+						<p>
+							<a href="http://www.git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">http://www.git-scm.com/book/en/v2/Getting-Started-Installing-Git</a> 告诉你如何去安装git.
+						</p>
+					</section>
+					<section>
+						<h5 id="2">配置 -
+						<mark>
+							$ git config
+						</mark></h5>
+						<p>
+							Git 安装完成之后，我们就可以运行 Git Bash 开始使用Git了，不过再此之前，为了让Git更友好的配合我们的工作，对Git进行一些简单的配置是很有必要的。
+						</p>
+						<p>
+							用
+							<mark>
+								$ git config
+							</mark>
+							命令对 Git 进行配置。在执行
+							<mark>
+								$ git config
+							</mark>
+							命令的时候，实际上是修改了git config文件的内容，所以我们也可以直接编辑git config文件达到同样的目的。
+						<p>
+							git config文件存放在三个地方：
+						</p>
+						<ul>
+							<li>
+								/etc/gitconfig 文件: 系统级别的配置，对所有用户都适用，用
+								<mark>
+									$ git config --system
+								</mark>
+								命令编辑。
+							</li>
+							<li>
+								~/.gitconfig 文件: 用户级别配置，存在于每个用户的主目录内，对当前用户适用，用
+								<mark>
+									$ git config --global
+								</mark>
+								命令编辑。
+							</li>
+							<li>
+								工作目录中.git/config文件: 项目级的配置，仅针对当前项目适用，用
+								<mark>
+									$ git config --local
+								</mark>
+								命令编辑,其中
+								<mark>
+									--local
+								</mark>
+								是可以不写的哦。
+							</li>
+						</ul>
+						<p>
+							每一个级别的配置会覆盖上层的相同配置，所以.git/config 优于 ~/.gitconfig 优于 /etc/gitconfig 被应用。
+						</p>
+						</p>
+						<p>
+							我们已经知道了
+							<mark>
+								$ git config
+							</mark>
+							命令，那么下面就试试它的作用好了。
+						</p>
+						<p>
+							按照惯例，多人协作时首先要让别人知道我们，那么用户名称和邮件地址是一个很重要的信息，这也是我们开始Git最开始要设置的信息。
+						</p>
+						<ul>
+							<li>
+								<mark>
+									$ git config --global user.name "User Name"
+								</mark>
+								用户名设置成了"User Name"，可以替换成你自己的name哦。
+							</li>
+							<li>
+								<mark>
+									$ git config --global user.email useremail@example.com
+								</mark>
+								邮箱设置成了"useremail@example.com"，可以替换成你自己的email哦。
+							</li>
+						</ul>
+						<p>
+							上面用了
+							<mark>
+								$ git config --global
+							</mark>
+							命令修改的是用户级别的配置，所以当前用户的所有项目都可以使用相同的name和email了。
+						</p>
+						<p>
+							到此为止，我们几乎就算是完成了Git的最基本的配置，也就是name和email，当然，git 还可以配置其他信息，例如文本编辑器
+							<mark>
+								$ git config --global core.editor
+							</mark>
+							，差异分析工具
+							<mark>
+								$ git config --global merge.tool
+							</mark>
+							等，其配置方法是一样的。
+						</p>
+						<p>
+							现在让我们用
+							<mark>
+								$ git config -l
+							</mark>
+							命令查看一下我们用例那些配置。
+						</p>
+						<p>
+							还可以使用
+							<mark>
+								$ git help config
+							</mark>
+							或
+							<mark>
+								$ git config --help
+							</mark>
+							命令查看更详细的帮助。
+						</p>
+					</section>
+					<section>
+						<h5  id="3">创建仓库 Init Repository -
+						<mark>
+							$ git init
+						</mark>
+						<mark>
+							$ git clone [url]
+						</mark>
+						<mark>
+							$ ssh-keygen -t rsa
+						</mark></h5>
+						<p>
+							现在，我们已经安装了Git，并已经配置了我们的Name和Email，接下来我们要创建一个仓库(Repository)。
+						</p>
+						<p>
+							有两种方法可以创建一个Git Repository。
+						</p>
+						<p>
+							方法1：使用
+							<mark>
+								$ git init
+							</mark>
+							命令，将本地目录初始化成git 仓库。
+						</p>
+						<span><img src="images/m-3-1.png"/></span>
+						<ul>
+							<li>
+								第一条命令：在D:\GitHub目录下创建了GitInit文件夹，也可以自己手工创建。
+							</li>
+							<li>
+								第二条命令：跳转到GitInit目录.
+							</li>
+							<li>
+								第三条命令：将GitInit目录初始化成一个Git仓库.实际上是在GitInit目录下创建了一个.git文件夹。
+							</li>
+						</ul>
+						<p>
+							仓库创建完成，第一个方法就是这么简单，其作用是将自己本地的文件夹初始化成Git仓库，此时的Git仓库已经可以管理项目文件啦。
+						</p>
+						<br/>
+						<br/>
+						<p>
+							方法2：使用
+							<mark>
+								$ git clone [url]
+							</mark>
+							命令，将现有的仓库克隆到本地。
+						</p>
+						<p>
+							再使用
+							<mark>
+								$ git clone [url]
+							</mark>
+							命令克隆一个现有的仓库（一般是指远程仓库）之前，我们应该知道，大多数Git服务器使用SSH公钥来授权，为了得到授权，所以我们需要一个公钥(public key).
+						</p>
+						<p>
+							检查一下在你的PC上是否已经有了公钥,一般存放在账户主目录下的.ssh资料夹里，看一下有没有.pub文件，就像 id_rsa.pub这样.
+						</p>
+						<ul>
+							<li>
+								<mark>
+									$ cd ~/.ssh
+								</mark>
+								进入账户主目录下的.ssh文件夹。
+							</li>
+							<li>
+								<mark>
+									$ ls
+								</mark>
+								显示资料夹里所有的文件。
+							</li>
+						</ul>
+						<p>
+							如果没有.ssh资料夹，或者资料夹里没有.pub文件，那么你需要使用ssh-keygen创建一个公钥。
+						</p>
+						<ul>
+							<li>
+								<mark>
+									$ ssh-keygen -t rsa
+								</mark>
+								在.ssh资料夹里创建一个id_rsa.pub和一个id_rsa文件，id_rsa.pub里面放的就是你的public key啦，id_rsa文件放的是你的私钥。
+								<mark>
+									-t rsa
+								</mark>
+								指定了要创建的密钥类型是RSA(SSH-2)，其他的还可以是rsa1(SSH-1)或者dsa(SSH-2).
+							</li>
+							<li>
+								<mark>
+									$ cat id_rsa.pub
+								</mark>
+								查看一下public key的内容。
+							</li>
+						</ul>
+						<p>
+							以上，我们就有了自己的 SSH 公钥，把公钥的内容复制给Git 管理员，或者我们自己将public key放到Git Server里，举例说明：
+						</p>
+						<ul>
+							<li>
+								登录你的<a href="https://github.com/">github.com</a>，假设你已经注册了GitHub账户.
+							</li>
+							<li>
+								点击页面右上角的Settings按纽，进入<a href="https://github.com/settings/profile">https://github.com/settings/profile</a>。
+							</li>
+							<li>
+								点击页面左侧的SSH keys菜单，进入<a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a>。
+							</li>
+							<li>
+								点击页面右侧的Add SSH key按纽，将你的 public key 粘帖进 key 文本框，点击下面的Add ley按纽。完成:)
+							</li>
+						</ul>
+						<p>
+							这样，我们就已经取得了 Git 服务器(GitHub)远程仓库的授权。下面我们就可以运行
+							<mark>
+								$ git clone [url]
+							</mark>
+							命令克隆远程仓库了。
+						</p>
+						<span><img src="images/m-3-2.png"/></span>
+						<ul>
+							<li>
+								上面把"git@github.com:dicolancy/PGRN.git"仓库克隆到了本地。
+							</li>
+							<li>
+								你会发现在D:\GitHub目录下多了一个叫做PGRN的文件夹，PGRN文件夹里就是你clone到的仓库。
+							</li>
+							<li>
+								如果你不喜欢PGRN这个名字，只需要在命令后面加上你希望的文件夹名就可以了,就像这样
+								<mark>
+									$ git clone git@github.com:dicolancy/PGRN.git myFolderName
+								</mark>
+								。
+							</li>
+						</ul>
+						<p>
+							这样，我们就有了自己工作的仓库啦，简单吧:)
+						</p>
+						<p>
+							但是，我们的仓库还只能自己玩，无法与别人协同工作，因为我们还没有与远程仓库关联起来。
+						</p>
+						<p>
+							远程仓库是指托管在网络上的项目仓库，其实和我们本地init来的仓库没有什么不同，只是被放在一个大家都方便访问地方，方便小伙伴们分享和抓取数据。有些远程仓库你只能读，有些你可以写。我们若想看别人的代码就可以从远程仓库抓取，若想分享自己的代码则把自己的code推送到远程仓库即可。
+						</p>
+						<p>
+							默认情况下，使用方法2 clone 来的仓库默认与远程仓库建立了一个关联，用origin作为远程仓库的别名，可以使用
+							<mark>
+								$ git remote -v
+							</mark>
+							命令查看远程仓库地址：
+						</p>
+						<span><img src="images/m-3-3.png"/></span>
+						<p>
+							每一个本地仓库可以和N多个远程仓库建立关系，用
+							<mark>
+								$ git remote add [repositoryname] [url]
+							</mark>
+							命令添加远程仓库：
+						</p>
+						<span><img src="images/m-3-4.png"/></span>
+						<p>
+							现在我们的本地仓库已经与分别与远程的gitinit仓库和pgrn仓库建立了关系，为后续的拉取数据(fetch)和 推送数据(push) 准备了条件。
+						</p>
+					</section>
+					<section>
+						<h5 id="4">添加文件 (编写自己的code)-
+						<mark>
+							$ git add
+						</mark></h5>
+						<p>
+							现在我们已经有了Git仓库，可以在这个仓库上面愉快的写代码了。
+						</p>
+						<p>
+							在开始编写文件之前，可以用
+							<mark>
+								$ git status
+							</mark>
+							命令检查一下仓库的状态:
+						</p>
+						<span><img src="images/m-4-1.png"/></span>
+						<p>
+							仓库里空空如也，啥都没有。
+						</p>
+						<p>
+							现在项目里新加一个文件a.txt，可以用
+							<mark>
+								$ touch a.txt
+							</mark>
+							命令创建文件，也可以手工创建。
+						</p>
+						<p>
+							再次用
+							<mark>
+								$ git status
+							</mark>
+							命令检查一下仓库的状态：
+						</p>
+						<span><img src="images/m-4-2.png"/></span>
+						<p>
+							可以看到，Git告诉我们在工作区内有未受管控(untracked)的文件a.txt,并提示我们用
+							<mark>
+								$ git add [filename]
+							</mark>
+							命令将a.txt文件纳入管控中。
+						</p>
+						<p>
+							现在我们用
+							<mark>
+								$ git add a.txt
+							</mark>
+							命令将a.txt纳入Git管控，并再次查看Git状态：
+						</p>
+						<span><img src="images/m-4-3.png"/></span>
+						<p>
+							Git告诉我们，现在有一个新文件被纳入管控，等待提交(commit),并提示我们用
+							<mark>
+								$ git rm --cached [filename]
+							</mark>
+							命令将文件从暂存区删除(unstage)。
+						</p>
+						<p>
+							我们当然不会将a.txt文件移掉，而且还要编辑它，给它新增一行内容“please don't remove me, please! :(”，然后再查看一下Git状态：
+						</p>
+						<span><img src="images/m-4-4.png"/></span>
+						<p>
+							我们可以看到，Git首先告诉我们有一个新文件a.txt被纳入管控，等待提交(commit)，这与上一次告诉我们的信息一样,
+							然后又告诉我们a.txt被修改过，但是并未受管控(not staged)，
+							而且提示我们用
+							<mark>
+								$ git add [filename]
+							</mark>
+							命令将文件纳入管控以便提交，
+							或者用
+							<mark>
+								$ git checnkout -- [filename]
+							</mark>
+							命令覆盖掉工作区的改变。
+						</p>
+						<p>
+							见鬼了，我们在刚才添加a.txt文件之后已经使用
+							<mark>
+								$ git add a.txt
+							</mark>
+							命令将a.txt文件纳入管控了,
+							为什么这次又提示我们再add一次呢，而且竟然出现了两个a.txt，一个已管控(已暂存staged)，一个未管控(未暂存not staged)?
+						</p>
+						<p>
+							实际上，Git并不保存文件的前后差异，Git将一个文件纳入管控的过程，就是将这个文件快照放入暂存区(staged)的过程(实际上是将快照实体放进了仓库，而将快照的索引tree放到了暂存区(Index文件))，
+							每运行一次
+							<mark>
+								$ git add [filename]
+							</mark>命令Git就将这个文件在工作区的状态做一次快照，并放入暂存区.
+							第一次add时，git将a.txt文件未修改之前的快照存入了暂存区，修改之后，工作区a.txt文件已经与暂存区的那个a.txt不一样了，
+							所以需要再次add，所以我们在上面看到了两个a.txt,绿色的那个表示已被管控,指的是在暂存区的那个未被修改过的版本，而红色的那个则是还没有被管控的修改后的版本。
+						</p>
+						<p>
+							更加详细的过程，我们会在后面详细探讨，而现在我们只要知道<strong>每次文件被重新修改过后，都要重新
+							<mark>
+								$ git add
+							</mark></strong>。
+						</p>
+						<p>
+							现在我们再次用
+							<mark>
+								$ git add a.txt
+							</mark>
+							命令将修改后的a.txt纳入Git管控，并再次查看Git状态：
+						</p>
+						<span><img src="images/m-4-5.png"/></span>
+						<p>
+							是否发现，这一次的status信息里只有了一个绿色的a.txt文件？几乎和第一次add后的status一样有木有？
+						</p>
+						<p>
+							难道是第二次add没有成功？是不是a.txt文件的内容没有被改变？我们用
+							<mark>
+								$ cat a.txt
+							</mark>
+							命令来查看一下就知晓:
+						</p>
+						<span><img src="images/m-4-6.png"/></span>
+						<p>
+							我们可以看到，a.txt文件是被修改过的版本，那么说明，第二次add之后,git 把暂存区里的a.txt文件快照替换成了新的版本了。
+						</p>
+					</section>
+					<section>
+						<h5 id="5">提交文件 -
+						<mark>
+							$ git commit
+						</mark></h5>
+						<p>
+							使用
+							<mark>
+								$ git add [filename]
+							</mark>
+							命令，我们已经把所有工作区里的文件都放到了暂存区里，是时候提交(commit)了。
+						</p>
+						<p>
+							请注意，这里的提交可不是提交给你的team leader，而是提交给Git，因为Git必须通过提交(commit)来组织管理暂存区里的文件快照。
+							add只是将文件快照存入暂存区，但是这一组快照还没有名气，等于是刚入行的小野模，而commit则是这一组快照的经纪人，有了commit的快照才能更加闪耀动人。
+						</p>
+						<p>
+							使用
+							<mark>
+								$ git commit
+							</mark>
+							命令将暂存区里所有的内容一次提交，这时界面会变成这样：
+						</p>
+						<span><img src="images/m-5-1.png"/></span>
+						<p>
+							上面，Git是在让我们为这次的commit输入说明，说明这次commit做了什么，#号后面的都是注释。
+						</p>
+						<p>
+							i键进入编辑模式，输入"first commit",然后Esc键，输入:wq,然后Enter键，自动回到Git Bash界面：
+						</p>
+						<span><img src="images/m-5-2.png"/></span><span><img src="images/m-5-3.png"/></span>
+						<p>
+							Git告诉我们这次提交的分支(master),是第一次提交(root-commit)，commitid(90adfd3，完整的commitid是一个40个十六进制字符组成的SHA-1哈希值)和说明(first commit)，一个文本文件被添加(100644是文件模式代码，表示普通文件)等信息.
+						</p>
+						<p>
+							完成了提交，再来看一下此时Git的状态：
+						</p>
+						<span><img src="images/m-5-4.png"/></span>
+						<p>
+							Git告诉我们，此时我们的工作区和暂存区都非常的干净，所有的内容都已经提交到了Git仓库。
+						</p>
+						<p>
+							现在我们在a.txt文件里再写入一行"Thanks!",再来看一下此时Git的状态：
+						</p>
+						<span><img src="images/m-5-5.png"/></span>
+						<p>
+							现在我想把这次的修改提交，可是每次提交都要先add，然后再在新窗口里写说明很麻烦是不是？
+						</p>
+						<p>
+							有一个更方便的方法，使用
+							<mark>
+								$ git commit -a -m "second commit"
+							</mark>
+							命令：
+						</p>
+						<span><img src="images/m-5-6.png"/></span>
+						<p>
+							提交成功！
+							<mark>
+								-a
+							</mark>
+							选项让Git在commit的时候自动将工作区里的被修改的文件快照暂存从而跳过add步骤，
+							<mark>
+								-m
+							</mark>
+							选项告诉Git后面跟着的字符串就是说明信息，所以不用在进入说明编辑的模式了。
+						</p>
+					</section>
+					<section>
+						<h5 id="6">抓取别人的更新 -
+						<mark>
+							$ git fetch
+						</mark>
+						<mark>
+							$ git pull
+						</mark></h5>
+						<p>
+							请注意，以上的所有操作中，除了clone远程仓库
+							<mark>
+								$ git clone
+							</mark>
+							外，所有操作都是在本地进行的，而且是不需要联网的，也就是说别人是无法看到我们库里的内容的。
+						</p>
+						<p>
+							如果你想看一下远程仓库中别人提交的更新内容，可以使用
+							<mark>
+								$ git fetch [remote-name]
+							</mark>
+							命令抓取远程仓库的内容。
+						</p>
+						<span><img src="images/m-6-1.png"/></span>
+						<p>
+							除了
+							<mark>
+								$ git fetch [remote-name]
+							</mark>
+							命令外，
+							<mark>
+								$ git pull
+							</mark>
+							命令也可以抓取远程仓库的内容，
+							与
+							<mark>
+								$ git fetch
+							</mark>
+							不同的是，
+							<mark>
+								$ git fetch
+							</mark>
+							只下载远程仓库的内容，但是并不会与本地内容合并(merge)，
+							<mark>
+								$ git pull
+							</mark>
+							命令不仅抓取远程仓库的内容，而且会自动与本地内容进行合并(merge).
+						</p>
+					</section>
+					<section>
+						<h5 id="7">推送自己的更新 -
+						<mark>
+							$ git push
+						</mark></h5>
+						<p>
+							现在我们的工作已经完成了，并已经全部提交(commit)给了本地的Git仓库，想要分享一下自己的工作成果，就要手工的把自己的库推送到远程仓库去。
+						</p>
+						<p>
+							再推送之前，必须保证已经将远程仓库的内容更新到了本地，所以在推送之前需要用
+							<mark>
+								$ git fetch
+							</mark>
+							命令先抓取远程仓库的数据并做一次合并。
+						</p>
+						<p>
+							使用
+							<mark>
+								$ git push [remote-name] [branch-name]
+							</mark>
+							将本地的分支推送到远程服务器：
+						</p>
+						<span><img src="images/m-7-1.png"/></span>
+						<p>
+							推送成功，现在小伙伴们可以使用
+							<mark>
+								$ git fetch
+							</mark>
+							命令获取你库里的数据了。
+						</p>
+					</section>
+					<section>
+						<h5 id="8">分支 -
+						<mark>
+							$ git branch
+						</mark></h5>
+						<p>
+							我们已经推送了一个版本到远程仓库，现在我们新建一个b.txt文件。
+						</p>
+						<p>
+							我们正在编写b.txt文件，这时想要在a.txt文件里加入一段话并推送到远程仓库，可是又不想和未编写完的b.txt一起推送上去，这时候可以使用Git的分支(Branch)功能。
+						</p>
+						<p>
+							我们默认在master分支中工作，所以master一般作为主分支使用，使用
+							<mark>
+								$ git branch
+							</mark>
+							命令可以查看所有分支。
+						</p>
+						<span><img src="images/m-8-1.png"/></span>
+						<p>
+							* 号表示当前工作所在的分支。
+						</p>
+						<p>
+							使用
+							<mark>
+								$ git branch [branch-name]
+							</mark>
+							创建分支：
+						</p>
+						<span><img src="images/m-8-2.png"/></span>
+						<p>
+							然后提交当前分支，再切换到newbranch分支,使用
+							<mark>
+								$ git checkout [branch-name]
+							</mark>
+							切换分支,然后使用
+							<mark>
+								$ ls
+							</mark>
+							命令查看工作区的文件：
+						</p>
+						<span><img src="images/m-8-3.png"/></span>
+						<p>
+							<mark>
+								$ ls
+							</mark>
+							命令显示了当前分支(现在所在的分支是newbranch)工作区的文件，只有a.txt文件,没有b.txt文件。
+						</p>
+						<p>
+							编辑a.txt文件，并提交：
+						</p>
+						<span><img src="images/m-8-4.png"/></span>
+						<p>
+							将本地的newbranch推送到远程仓库的master分支：
+						</p>
+						<span><img src="images/m-8-5.png"/></span>
+						<p>
+							这样，最新版本的a.txt文件已经推送到了远程仓库，而b.txt并没有影响。现在可以切换回到master分支继续b.txt的编写：
+						</p>
+						<span><img src="images/m-8-6.png"/></span>
+						<p>
+							我们查看b.txt和a.txt文件的内容时候发现,b.txt文件并没有受到newbranchd的影响.
+						</p>
+						<p>
+							而a.txt文件也没有第三行，现在我想把newbranch分支里对a.txt文件所作的修改合并(merge)到master分支的a.txt文件中来,使用
+							<mark>
+								$ git merge [branch-name]
+							</mark>
+							命令合并分支：
+						</p>
+						<span><img src="images/m-8-7.png"/></span><span><img src="images/m-8-8.png"/></span>
+						<p>
+							现在newbranch分支里对a.txt文件的修改已经合并到了master分支里，a.txt文件里也多出了第三行。
+						</p>
+						<p>
+							查看一下现在有哪些分支：
+						</p>
+						<span><img src="images/m-8-9.png"/></span>
+						<p>
+							现在有了master分支和newbranch分支，其中master分支是当前所在分支，newbranch已经没用了，把它删掉，用
+							<mark>
+								$ git branch -d [branch-name]
+							</mark>
+							命令,再次查看一下有哪些分支：
+						</p>
+						<span><img src="images/m-8-10.png"/></span>
+						<p>
+							现在只剩下了master分支。
+						</p>
+						<p>
+							等b.txt编写完成后提交，并推送远程仓库，那么今天的工作就完成了 。
+						</p>
+					</section>
+					<section>
+						<h5 id="9">移除文件 -
+						<mark>
+							$ rm [file-name]
+						</mark>
+						<mark>
+							$ git rm [file-name]
+						</mark></h5>
+						<p>
+							现在我们在工作目录中新增一个c.txt文件。如果我们想移除c.txt文件，那么在不同的状态下有不同的移除方法。
+						</p>
+						<ul>
+							<li>
+								c.txt文件还没有添加到暂存区，即不使用
+								<mark>
+									$ git add [file-name]
+								</mark>
+								命令，此时若想删除c.txt文件只需运行
+								<mark>
+									$ rm c.txt
+								</mark>
+								命令即可。
+							</li>
+							<li>
+								c.txt文件已经添加进暂存区，即已经使用了
+								<mark>
+									$ git add [file-name]
+								</mark>
+								命令，此时若只将c.txt文件从暂存区移除，则运行
+								<mark>
+									$ git rm --cached c.txt
+								</mark>
+								命令即可：
+								<br/>
+								<span><img src="images/9-1.png"/></span>
+								<br/>
+								此时c.txt文件还在，只是回到了使用
+								<mark>
+									$ git add [file-name]
+								</mark>
+								命令之前的状态，即c.txt已被移除出了暂存区。这时只要在运行
+								<mark>
+									$ rm c.txt
+								</mark>
+								命令即可将c.txt彻底删除。
+							</li>
+							<li>
+								c.txt文件已经添加进暂存区，即已经使用了
+								<mark>
+									$ git add [file-name]
+								</mark>
+								命令，此时若要将c.txt彻底删除，即同时从暂存区和工作区删除，可以先运行
+								<mark>
+									$ rm c.txt
+								</mark>
+								命令，再运行
+								<mark>
+									$ git rm c.txt
+								</mark>
+								命令即可。
+								<br/>
+								除此以外，还可以使用
+								<mark>
+									$ git rm -f c.txt
+								</mark>
+								命令强制删除，以达到同样的效果。直接使用
+								<mark>
+									$ git rm c.txt
+								</mark>
+								命令是行不通的哦。
+							</li>
+							<li>
+								如果c.txt文件已经被commit，并且push到了远程仓库，那么只要在本地将c.txt文件删除后做一次提交，然后把提交后的commit推送到远程仓库就可以把远程仓库里的c.txt文件也删除了。
+							</li>
+							<li>
+								需要注意的是，对于已经被commit过的文件，
+								<mark>
+									$ git rm
+								</mark>
+								命令只是移除了之后的commit里对此文件的引用，而在历史的commit里这个文件还是存在的，而且文件的快照也并没有从仓库里彻底移除，
+								<br/>
+								若要从仓库中将这个文件的快照也移除掉，那么需要在移除快照之前，将提交历史中所有引用过这个文件的commit里对这个文件的引用移除掉，然后使用
+								<mark>
+									$ git prune
+								</mark>
+								命令(此命令是移除所有没有被引用的对象)，详细方法我们后面详谈。
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h5 id="10">移动/重命名文件 -
+						<mark>
+							$ mv [file-name] [newfile-name]
+						</mark>
+						<mark>
+							$ git mv [from-file-name] [to-file-name]
+						</mark></h5>
+						<p>
+							如果要将文件从一个地方移动到另一个地方，或者重命名，可以使用
+							<mark>
+								$ git mv [from-file-name] [to-file-name]
+							</mark>
+							命令，对已经暂存过的文件有效，如果没有暂存的文件，用
+							<mark>
+								$ mv [from-file-name] [to-file-name]
+							</mark>
+							命令就可以了。
+						</p>
+						<p>
+							<mark>
+								$ git mv [from-file-name] [to-file-name]
+							</mark>
+							命令的效果，等效于
+							<mark>
+								$ mv [from-file-name] [to-file-name]
+							</mark>
+							+
+							<mark>
+								$ git rm [from-file-name]
+							</mark>
+							+
+							<mark>
+								$ git add [to-file-name]
+							</mark>
+							3条命令的效果。
+						</p>
+					</section>
+					<section>
+						<h5 id="gitconfig">
+						<mark>
+							$ git config
+						</mark></h5>
+						<p>
+							<mark>
+								$ git config
+							</mark>
+							用于设置Git的配置信， 实际上是修改了Git的<a href="#2"> config文件 </a>内容， 所以也可以通过记事本直接编辑config文件达到相同的效果。
+						</p>
+						<p>
+							查看一下项目级配置文件里的内容：
+						</p>
+						<span><img src="images/gitconfig-1.png"/></span>
+						<p>
+							上图可以看到config文件里的配置格式(三级配置文件格式相同),其中"[core]"和"[remote "origin"]"称为"section",
+							每一个section下面有"key=value"键值对,"section.key"就组成了一个完整的变量名variable-name。
+						</p>
+						<p>
+							<mark>
+								$ git config
+							</mark>
+							命令的效果便是添加/删除/修改config文件里的这些seciont,key,value
+						</p>
+						<ul>
+							<li>
+								<mark>
+									-l
+								</mark>
+								或者
+								<mark>
+									--list
+								</mark>
+								查看配置信息,
+								<mark>
+									$ git config -l
+								</mark>
+								查看所有config信息,包括三级配置的所有内容，按照配置应用范围大小从上倒下排序：系统级-用户级-项目级。
+							</li>
+							<li>
+								<mark>
+									--system
+								</mark>
+								,
+								<mark>
+									--global
+								</mark>
+								,
+								<mark>
+									--local
+								</mark>
+								分别表示系统级(Git安装目录/etc/gitconfig)配置，用户级(~/gitconfig)配置和项目级(项目目录/.git/config)配置。
+								<mark>
+									$ git config -l --local
+								</mark>
+								查看当前项目的项目级配置.
+							</li>
+							<li>
+								<mark>
+									[variable-name] [variable-value]
+								</mark>
+								查看变量名(section.key)内容或设置变量的值,如:
+								<mark>
+									$ git config user.name
+								</mark>
+								查看用户名,
+								<mark>
+									$ git config user.name dicolancy
+								</mark>
+								将用户名设置为"dicolancy"。
+							</li>
+							<li>
+								<mark>
+									--add [variable-name] [variable-value]
+								</mark>
+								增加新的配置变量,
+								<mark>
+									$ git config --local --add user.name aa
+								</mark>
+								在项目级配置中的增加user.name变量名，并将值设置为"aa"，即user(section)下增加一个name(key)=aa(value)的键值对。
+							</li>
+							<li>
+								<mark>
+									--unset [variable-name]
+								</mark>
+								删除配置,
+								<mark>
+									$ git config --local --unset user.name &lt;aa&gt;
+								</mark>
+								可以删除项目级配置中的用户名信息，即user(section)下key是name &lt;值是aa&gt;的键值对。
+							</li>
+							<li>
+								<mark>
+									--rename-secion [old-name] [new-name]
+								</mark>
+								重命名section,
+								<mark>
+									$ git config --local --rename-section user users
+								</mark>
+								将原来名称是"user"的section修改为"users"。
+							</li>
+							<li>
+								<mark>
+									--remove-secion [section-name]
+								</mark>
+								删除指定名称section,
+								<mark>
+									$ git config --local --remove-section users
+								</mark>
+								将名称是"users"的section移除。
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h5 id="gitinit">
+						<mark>
+							$ git init
+						</mark></h5>
+						<p>
+							预知详情，且听下回分解
+						</p>
+					</section>
+					<section>
+						<h5 id="gitclone">
+						<mark>
+							$ git init
+						</mark></h5>
+						<p>
+							预知详情，且听下回分解
+						</p>
+					</section>
+					<p></p>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+				</article>
+			</section>
+		</div>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/dicolancy/PGRN/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/dicolancy/PGRN/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+		<!-- FOOTER  -->
+		<div id="footer_wrap" class="outer">
+			<footer class="inner">
+				<p class="copyright">
+					pgrn maintained by <a href="https://github.com/dicolancy">dicolancy</a>
+				</p>
+				<p>
+					Published with <a href="http://pages.github.com">GitHub Pages</a>
+				</p>
+			</footer>
+		</div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">pgrn maintained by <a href="https://github.com/dicolancy">dicolancy</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+	</body>
 </html>
