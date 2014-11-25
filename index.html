@@ -238,7 +238,7 @@
 							</mark>
 							命令，将本地目录初始化成git 仓库。
 						</p>
-						<span><img src="images/m-3-1.png"/></span>
+						<span><img src="images/pgrn/m-3-1.png"/></span>
 						<ul>
 							<li>
 								第一条命令：在D:\GitHub目录下创建了GitInit文件夹，也可以自己手工创建。
@@ -331,7 +331,7 @@
 							</mark>
 							命令克隆远程仓库了。
 						</p>
-						<span><img src="images/m-3-2.png"/></span>
+						<span><img src="images/pgrn/m-3-2.png"/></span>
 						<ul>
 							<li>
 								上面把"git@github.com:dicolancy/PGRN.git"仓库克隆到了本地。
@@ -363,7 +363,7 @@
 							</mark>
 							命令查看远程仓库地址：
 						</p>
-						<span><img src="images/m-3-3.png"/></span>
+						<span><img src="images/pgrn/m-3-3.png"/></span>
 						<p>
 							每一个本地仓库可以和N多个远程仓库建立关系，用
 							<mark>
@@ -371,7 +371,7 @@
 							</mark>
 							命令添加远程仓库：
 						</p>
-						<span><img src="images/m-3-4.png"/></span>
+						<span><img src="images/pgrn/m-3-4.png"/></span>
 						<p>
 							现在我们的本地仓库已经与分别与远程的gitinit仓库和pgrn仓库建立了关系，为后续的拉取数据(fetch)和 推送数据(push) 准备了条件。
 						</p>
@@ -391,7 +391,7 @@
 							</mark>
 							命令检查一下仓库的状态:
 						</p>
-						<span><img src="images/m-4-1.png"/></span>
+						<span><img src="images/pgrn/m-4-1.png"/></span>
 						<p>
 							仓库里空空如也，啥都没有。
 						</p>
@@ -409,7 +409,7 @@
 							</mark>
 							命令检查一下仓库的状态：
 						</p>
-						<span><img src="images/m-4-2.png"/></span>
+						<span><img src="images/pgrn/m-4-2.png"/></span>
 						<p>
 							可以看到，Git告诉我们在工作区内有未受管控(untracked)的文件a.txt,并提示我们用
 							<mark>
@@ -424,7 +424,7 @@
 							</mark>
 							命令将a.txt纳入Git管控，并再次查看Git状态：
 						</p>
-						<span><img src="images/m-4-3.png"/></span>
+						<span><img src="images/pgrn/m-4-3.png"/></span>
 						<p>
 							Git告诉我们，现在有一个新文件被纳入管控，等待提交(commit),并提示我们用
 							<mark>
@@ -435,7 +435,7 @@
 						<p>
 							我们当然不会将a.txt文件移掉，而且还要编辑它，给它新增一行内容“please don't remove me, please! :(”，然后再查看一下Git状态：
 						</p>
-						<span><img src="images/m-4-4.png"/></span>
+						<span><img src="images/pgrn/m-4-4.png"/></span>
 						<p>
 							我们可以看到，Git首先告诉我们有一个新文件a.txt被纳入管控，等待提交(commit)，这与上一次告诉我们的信息一样,
 							然后又告诉我们a.txt被修改过，但是并未受管控(not staged)，
@@ -480,7 +480,7 @@
 							</mark>
 							命令将修改后的a.txt纳入Git管控，并再次查看Git状态：
 						</p>
-						<span><img src="images/m-4-5.png"/></span>
+						<span><img src="images/pgrn/m-4-5.png"/></span>
 						<p>
 							是否发现，这一次的status信息里只有了一个绿色的a.txt文件？几乎和第一次add后的status一样有木有？
 						</p>
@@ -491,7 +491,7 @@
 							</mark>
 							命令来查看一下就知晓:
 						</p>
-						<span><img src="images/m-4-6.png"/></span>
+						<span><img src="images/pgrn/m-4-6.png"/></span>
 						<p>
 							我们可以看到，a.txt文件是被修改过的版本，那么说明，第二次add之后,git 把暂存区里的a.txt文件快照替换成了新的版本了。
 						</p>
@@ -519,28 +519,28 @@
 							</mark>
 							命令将暂存区里所有的内容一次提交，这时界面会变成这样：
 						</p>
-						<span><img src="images/m-5-1.png"/></span>
+						<span><img src="images/pgrn/m-5-1.png"/></span>
 						<p>
 							上面，Git是在让我们为这次的commit输入说明，说明这次commit做了什么，#号后面的都是注释。
 						</p>
 						<p>
 							i键进入编辑模式，输入"first commit",然后Esc键，输入:wq,然后Enter键，自动回到Git Bash界面：
 						</p>
-						<span><img src="images/m-5-2.png"/></span><span><img src="images/m-5-3.png"/></span>
+						<span><img src="images/pgrn/m-5-2.png"/></span><span><img src="images/pgrn/m-5-3.png"/></span>
 						<p>
 							Git告诉我们这次提交的分支(master),是第一次提交(root-commit)，commitid(90adfd3，完整的commitid是一个40个十六进制字符组成的SHA-1哈希值)和说明(first commit)，一个文本文件被添加(100644是文件模式代码，表示普通文件)等信息.
 						</p>
 						<p>
 							完成了提交，再来看一下此时Git的状态：
 						</p>
-						<span><img src="images/m-5-4.png"/></span>
+						<span><img src="images/pgrn/m-5-4.png"/></span>
 						<p>
 							Git告诉我们，此时我们的工作区和暂存区都非常的干净，所有的内容都已经提交到了Git仓库。
 						</p>
 						<p>
 							现在我们在a.txt文件里再写入一行"Thanks!",再来看一下此时Git的状态：
 						</p>
-						<span><img src="images/m-5-5.png"/></span>
+						<span><img src="images/pgrn/m-5-5.png"/></span>
 						<p>
 							现在我想把这次的修改提交，可是每次提交都要先add，然后再在新窗口里写说明很麻烦是不是？
 						</p>
@@ -551,7 +551,7 @@
 							</mark>
 							命令：
 						</p>
-						<span><img src="images/m-5-6.png"/></span>
+						<span><img src="images/pgrn/m-5-6.png"/></span>
 						<p>
 							提交成功！
 							<mark>
@@ -586,7 +586,7 @@
 							</mark>
 							命令抓取远程仓库的内容。
 						</p>
-						<span><img src="images/m-6-1.png"/></span>
+						<span><img src="images/pgrn/m-6-1.png"/></span>
 						<p>
 							除了
 							<mark>
@@ -634,7 +634,7 @@
 							</mark>
 							将本地的分支推送到远程服务器：
 						</p>
-						<span><img src="images/m-7-1.png"/></span>
+						<span><img src="images/pgrn/m-7-1.png"/></span>
 						<p>
 							推送成功，现在小伙伴们可以使用
 							<mark>
@@ -661,7 +661,7 @@
 							</mark>
 							命令可以查看所有分支。
 						</p>
-						<span><img src="images/m-8-1.png"/></span>
+						<span><img src="images/pgrn/m-8-1.png"/></span>
 						<p>
 							* 号表示当前工作所在的分支。
 						</p>
@@ -672,7 +672,7 @@
 							</mark>
 							创建分支：
 						</p>
-						<span><img src="images/m-8-2.png"/></span>
+						<span><img src="images/pgrn/m-8-2.png"/></span>
 						<p>
 							然后提交当前分支，再切换到newbranch分支,使用
 							<mark>
@@ -684,7 +684,7 @@
 							</mark>
 							命令查看工作区的文件：
 						</p>
-						<span><img src="images/m-8-3.png"/></span>
+						<span><img src="images/pgrn/m-8-3.png"/></span>
 						<p>
 							<mark>
 								$ ls
@@ -694,15 +694,15 @@
 						<p>
 							编辑a.txt文件，并提交：
 						</p>
-						<span><img src="images/m-8-4.png"/></span>
+						<span><img src="images/pgrn/m-8-4.png"/></span>
 						<p>
 							将本地的newbranch推送到远程仓库的master分支：
 						</p>
-						<span><img src="images/m-8-5.png"/></span>
+						<span><img src="images/pgrn/m-8-5.png"/></span>
 						<p>
 							这样，最新版本的a.txt文件已经推送到了远程仓库，而b.txt并没有影响。现在可以切换回到master分支继续b.txt的编写：
 						</p>
-						<span><img src="images/m-8-6.png"/></span>
+						<span><img src="images/pgrn/m-8-6.png"/></span>
 						<p>
 							我们查看b.txt和a.txt文件的内容时候发现,b.txt文件并没有受到newbranchd的影响.
 						</p>
@@ -713,14 +713,14 @@
 							</mark>
 							命令合并分支：
 						</p>
-						<span><img src="images/m-8-7.png"/></span><span><img src="images/m-8-8.png"/></span>
+						<span><img src="images/pgrn/m-8-7.png"/></span><span><img src="images/pgrn/m-8-8.png"/></span>
 						<p>
 							现在newbranch分支里对a.txt文件的修改已经合并到了master分支里，a.txt文件里也多出了第三行。
 						</p>
 						<p>
 							查看一下现在有哪些分支：
 						</p>
-						<span><img src="images/m-8-9.png"/></span>
+						<span><img src="images/pgrn/m-8-9.png"/></span>
 						<p>
 							现在有了master分支和newbranch分支，其中master分支是当前所在分支，newbranch已经没用了，把它删掉，用
 							<mark>
@@ -728,7 +728,7 @@
 							</mark>
 							命令,再次查看一下有哪些分支：
 						</p>
-						<span><img src="images/m-8-10.png"/></span>
+						<span><img src="images/pgrn/m-8-10.png"/></span>
 						<p>
 							现在只剩下了master分支。
 						</p>
@@ -770,7 +770,7 @@
 								</mark>
 								命令即可：
 								<br/>
-								<span><img src="images/9-1.png"/></span>
+								<span><img src="images/pgrn/9-1.png"/></span>
 								<br/>
 								此时c.txt文件还在，只是回到了使用
 								<mark>
@@ -877,7 +877,7 @@
 						<p>
 							查看一下项目级配置文件里的内容：
 						</p>
-						<span><img src="images/gitconfig-1.png"/></span>
+						<span><img src="images/pgrn/gitconfig-1.png"/></span>
 						<p>
 							上图可以看到config文件里的配置格式(三级配置文件格式相同),其中"[core]"和"[remote "origin"]"称为"section",
 							每一个section下面有"key=value"键值对,"section.key"就组成了一个完整的变量名variable-name。
