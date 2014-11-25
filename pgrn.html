@@ -711,7 +711,7 @@
 				<span><img src="images/gitconfig-1.png"/></span>
 				<p>上图可以看到config文件里的配置格式(三级配置文件格式相同),其中"[core]"和"[remote "origin"]"称为"section",
 					每一个section下面有"key=value"键值对,"section.key"就组成了一个完整的变量名variable-name。</p>
-				<p><mark>$ git config</mark>命令的效果便是添加/删除/修改config文件里的这些seciont,key,value</p>	
+				<p><mark>$ git config</mark>命令的效果便是添加/删除/修改config文件里的这些section,key,value</p>	
 				<ul>
 					<li><mark>-l</mark>或者<mark>--list</mark> 查看配置信息,<mark>$ git config -l</mark>查看所有config信息,包括三级配置的所有内容，按照配置应用范围大小从上倒下排序：系统级-用户级-项目级。</li>
 					<li><mark>--system</mark>,<mark>--global</mark>,<mark>--local</mark> 分别表示系统级(Git安装目录/etc/gitconfig)配置，用户级(~/gitconfig)配置和项目级(项目目录/.git/config)配置。<mark>$ git config -l --local</mark>查看当前项目的项目级配置.</li>
@@ -724,6 +724,11 @@
 			</section>
 			<section>
 				<h5 id="gitinit"><mark>$ git init</mark></h5>
+				<p><mark>$ git init &lt;folder-name&gt;</mark> 将目录初始化为Git仓库(Repository),其中如果不加<mark>folder-name</mark>则将当前所在的目录初始化成仓库,加上则以folder-name(folder-name可以是一个新的路径)为名新建一个目录，并将这个目录初始化成Git仓库。</p>
+				<p>运行<mark>$ git init</mark>命令时候，实际上是在目录下新建了一个隐藏文件夹.git,这个.git就是Git仓库里</p>
+			</section>
+			<section>
+				<h5 id="gitclone"><mark>$ git init</mark></h5>
 				<p></p>
 			</section>
 			<p></p>
