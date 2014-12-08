@@ -31,12 +31,20 @@
 		<div id="main_content_wrap" class="outer">
 			<section id="main_content" class="inner">
 				<article>
-					<h5>现在开始 Pro Git 读书笔记: <a href="http://www.git-scm.com/" target="_blank">www.git-scm.com</a></h5>
+					<h5 id="0">现在开始 Pro Git 读书笔记: <a href="http://www.git-scm.com/" target="_blank">www.git-scm.com</a></h5>
 					<p>
 						从最最基础的使用开始，一步步探究Git的秘密。
+						<p>资料来源：</p>
+						<ul>
+							<li>Pro Git:<a href="http://www.open-open.com/lib/list/282" target="_blank"> http://www.git-scm.com/book/en/v2</a></li>
+							<li>Git经验库:<a href="http://www.open-open.com/lib/list/282" target="_blank"> http://www.open-open.com/lib/list/282</a></li>
+						</ul>
 					</p>
 					<p>
-						<ul class="ulNav">
+						<ul class="ulNav">							
+							<li>
+								<a href="#0">开始</a>
+							</li>
 							<li>
 								<a href="#1">安装</a>
 							</li>
@@ -70,15 +78,27 @@
 						</ul>
 						<ul class="ulNav ulNavCommand">
 							<li>
-								<a href="#gitconfig">
+								<a href="#gitfolder">
 								<mark>
-									$ git config
+									Git目录结构
+								</mark></a>
+							</li>
+							<li>
+								<a href="#gitbase">
+								<mark>
+									Git存储对象的基本原理
 								</mark></a>
 							</li>
 							<li>
 								<a href="#gitinit">
 								<mark>
 									$ git init
+								</mark></a>
+							</li>
+							<li>
+								<a href="#gitconfig">
+								<mark>
+									$ git config
 								</mark></a>
 							</li>
 							<li>
@@ -322,6 +342,9 @@
 							</li>
 							<li>
 								点击页面右侧的Add SSH key按纽，将你的 public key 粘帖进 key 文本框，点击下面的Add ley按纽。完成:)
+							</li>
+							<li>
+								<mark>$ ssh -T git@github.com</mark>验证公钥是否添加成功，如果成功会告诉你successfully！
 							</li>
 						</ul>
 						<p>
@@ -815,7 +838,7 @@
 								<mark>
 									$ git rm
 								</mark>
-								命令只是移除了之后的commit里对此文件的引用，而在历史的commit里这个文件还是存在的，而且文件的快照也并没有从仓库里彻底移除，
+								命令只是移除了此次提交之后的commit里对此文件的引用，而在历史的commit里这个文件还是存在的，而且文件的快照也并没有从仓库里彻底移除，
 								<br/>
 								若要从仓库中将这个文件的快照也移除掉，那么需要在移除快照之前，将提交历史中所有引用过这个文件的commit里对这个文件的引用移除掉，然后使用
 								<mark>
@@ -863,6 +886,62 @@
 							3条命令的效果。
 						</p>
 					</section>
+					<p><br/><br/><br/>------------------- 常用命令详解 --------------------</p>
+					<section>
+						<h5 id="gitinit">
+						<mark>
+							$ git init
+						</mark></h5>
+						<p>
+							<mark>
+								$ git init &lt;folder-name&gt;
+							</mark>
+							将目录初始化为Git仓库(Repository),其中如果不加
+							<mark>
+								folder-name
+							</mark>
+							则将当前所在的目录初始化成仓库,加上则将folder-name(folder-name可以是一个新的路径)指定的目录初始化成Git仓库，如果目录不存在就会创建。
+						</p>
+						<p>
+							运行<mark>$ git init</mark>
+							命令时候，实际上是在目录下新建了一个隐藏文件夹.git,这个.git文件夹就是Git仓库了。
+						</p>
+						<p id="gitfolder"><strong>.git主要目录结构</strong>内如下图所示：<br/>
+						<span><img src="images/pgrn/gitinit-1.png"/></span></p>
+						<ul>
+							<li>config:文件。Git仓库的项目级配置文件，<mark>$ git config --local</mark>命令改写的就是这个文件。</li>
+							<li>HEAD:文件。当我们工作的时候实际上是在一个分支里工作，HEAD文件标记的就是当前工作区所在的分支。
+								<br/><mark>$ git checkout [branch-name]</mark>命令的实际效果就是改写了HEAD文件，同时将 branch-name 分支指向的commit对象里的内容加载到工作区，可以说HEAD是一个指向分支的指针。</li>
+							<li>index:文件。在刚刚init的时候并不存在，它是在执行<mark>$ git add</mark>命令之后才会产生的索引文件,实际上就是所谓的暂存区,也是准备commit的文件清单。
+								<br/>它是一个包含文件索引的目录树，记录文件名和文件状态信息(时间戳,文件长度等)，并不存储文件内容，文件内容保存在.git/objects目录中，文件索引建立了文件和对象库中对象实体之间的对应关系。
+								</li>
+							<li>objects:文件夹。是Git仓库真正存放数据的地方，在执行Git的add/commit命令的时候产生的各种对象实际都是存放在的objects目录里。
+								<br/>Git有4种对象：commit -- 提交对象,tree -- 对应项目中的目录,blob -- 对应项目中的文件,tag -- Git标签对象，比较特殊，后续会详讲；
+								<br/>所有的Git对象都是以二进制文件的方式存放在objects目录里。</li>
+							<li>refs:文件夹。我们创建的分支信息就存放在refs目录里，所谓的分支branch，实际上就是一个指向commit对象的指针。
+								<br/>当执行<mark>$ git branch [branch-name]</mark>命令创建一个分支时候，实际上Git就是在 refs 目录下的 heads 目录下创建了一个名为branch-name的文件，并将当前commitid写入这个文件。
+								<br/>我们甚至可以手工在 refs/heads 目录下创建文件并写入 commitid 来创建新的分支 ，所以 Git 创建分支才会这么快，也就是建个文件，写入40个字符的时间。
+								<br/>在刚 init 的Git仓库里是没有分支的,refs 目录下也不存在分支文件,只有第一次执行<mark>$ git commit</mark>命令之后才会产生第一个commitid,这时候Git会在 refs 的 heads 目录下创建一个名为"master"的分支文件，并将刚产生的 commitid 写进 master 文件里，这样我们就有了第一个分支"master"。master 分支是git的默认分支。
+								<br/>
+								</li>
+						</ul>
+						<p id="gitbase"><strong>Git 对象存储的基本原理：</strong></p>
+						<p>结合Git目录结构，来看一下Git究竟是怎样存储并管理数据的。</p>
+						<p>在Git中，我们根据被跟踪文件流转的过程，可以将Git目录分成3个区：工作区(Working Directory),暂存区(staging area),本地仓库(Repository),
+							<br/>相对应的，文件也可以分成3个状态：已修改(modified),已暂存(staged),已提交(committed)。</p>
+						<span><img src="images/pgrn/gitinit-2.png"/></span>
+						<p>上面我们看到，Git中几乎所有的操作都是在本地进行的，远程仓库的作用是让本地的工作结果能够分享给其他小伙伴。</p>
+						<p>在Git中所有存储的对象都是用一个40个字符构成的SHA1哈希值来索引的,这个值是用对象内容经过哈希算法计算而来。两个对象只要内容不同几乎不可能会有一样的对象名，反之则对象名是一样的,所以Git只需通过比较SHA1值就可以很快判断两个对象是否相同。</p>
+						<p>Git中存储的对象有四种类型："blob"、"tree"、"commit"、"tag"。
+							<ul>
+								<li><strong>blob</strong> - 用来存储文件数据，一块二进制数据。</li>
+								<li><strong>tree</strong> - 可以表示一个目录。</li>
+								<li><strong>commit</strong> - 标记项目某一个时间点的状态，包括时间戳、提交者、上次提交的指针、tree指针等。</li>
+								<li><strong>tag</strong> - 带有附注信息的一个用来标记某一个commit对象的特殊对象，类似commit对象。</li>
+							</ul>
+						</p>						
+					</section>
+					
 					<section>
 						<h5 id="gitconfig">
 						<mark>
@@ -975,39 +1054,52 @@
 								</mark>
 								将名称是"users"的section移除。
 							</li>
+							<li>
+								<mark>
+									core.editor
+								</mark>
+								Git默认会使用你的环境变量GIT_EDITOR定义的值作为文本编辑器，如果没有则会调用Vi来创建和编辑提交以及标签信息， <mark>core.editor</mark>变量用来改变默认编辑器。
+								<br/>将Notepad++设置为默认文本编辑器：
+								<ul>
+									<li>在系统中新增一个"GIT_EDITOR"环境变量,值为"Notepad++.exe".</li>
+									<li>在PATH系统变量汇总追加"C:\Program Files\Notepad++;"</li>
+								</ul>
+							</li>
+							<li>
+								<mark>commit.template</mark>
+								用于配置commit说明的模板文件，每次commit的时候Git会自动将模板文件里的内容写入注释，如果你的commit说明有固定的格式的话，这个变量会很有用。								
+							</li>
+							<li>
+								<mark>merge.tool</mark>
+								设置差异比较工具。也就是<mark>$ git diff</mark>命令调用的工具，用于比较文件不同版本之间的差异。虽然Git自己实现了diff，但是我们可以用其他的工具替换它，比如P4Merge(Perforce 图形化合并工具)。
+							</li>
 						</ul>
-					</section>
-					<section>
-						<h5 id="gitinit">
-						<mark>
-							$ git init
-						</mark></h5>
-						<p>
-							<mark>
-								$ git init &lt;folder-name&gt;
-							</mark>
-							将目录初始化为Git仓库(Repository),其中如果不加
-							<mark>
-								folder-name
-							</mark>
-							则将当前所在的目录初始化成仓库,加上则以folder-name(folder-name可以是一个新的路径)为名新建一个目录，并将这个目录初始化成Git仓库。
-						</p>
-						<p>
-							运行
-							<mark>
-								$ git init
-							</mark>
-							命令时候，实际上是在目录下新建了一个隐藏文件夹.git,这个.git就是Git仓库里
-						</p>
 					</section>
 					<section>
 						<h5 id="gitclone">
 						<mark>
-							$ git init
+							$ git clone
 						</mark></h5>
 						<p>
 							预知详情，且听下回分解
 						</p>
+					</section>
+					<section>
+						<h5 id="gitdiff"><mark>$ git diff </mark></h5>
+						<p><mark>$ git diff </mark>比较工作区与暂存区之间的差异，working directory VS staging area</p>
+						<p><mark>$ git diff --cached</mark>比较暂存区与仓库当前(commit)之间的差异，staging area VS repository(commit) </p>
+						<p><mark>$ git diff HEAD</mark>比较工作区与仓库当前(commit)之间的差异，working directory VS repository(commit)</p>
+						<p><mark>$ git diff [commitid]</mark>比较工作区与指定 commit 之间的差异，working directory VS commit</p>
+					</section>
+					<section>
+						<h5 id="gitcheckout"><mark>$ git checkout </mark></h5>
+						<p>可以理解为将指定内容覆盖到工作环境中,当前的工作环境包括工作区,暂存区,当前分支指向的commit.它操作的目的地是"工作目录".</p>
+						<p><mark>$ git checkout [branch-name]</mark>切换到分支指定分支 ，实际上是将指定分支指向的commit内容写到工作区和暂存区，构成新的工作环境。</p>
+						<p><mark>$ git checkout -b [branch-name]</mark>创建并切换到分支,新建一个指向当前工作分支指向的commit的新分支，并切换过去。 </p>
+						<p><mark>$ git checkout -- [file-name]</mark>从暂存区(staging area)恢复工作区(working directory)文件。将暂存区里的内容写到工作目录中.</p>
+						<p><mark>$ git checkout HEAD [file-name]</mark>从仓库(commit)恢复暂存区(staging area)和工作区(working directory)文件 。将HEAD指向的commit内容写到工作目录。</p>
+						
+						<p><mark>$ git reset HEAD </mark>从仓库(commit)恢复暂存区(staging area)文件</p>
 					</section>
 					<p></p>
 					<br/>
